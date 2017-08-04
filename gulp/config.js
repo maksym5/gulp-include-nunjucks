@@ -4,7 +4,7 @@ var destPath = 'dist';
 var config = {
 
     src: {
-        nodeModules: 'node_modules',
+        nodeModules    : 'node_modules',
         root           : 'app',
         sass           : 'app/sass',
         generated      : 'app/sass/_generated',
@@ -12,7 +12,7 @@ var config = {
         css            : 'app/css',
         fonts          : 'app/fonts',
         js             : 'app/js',
-        common             : 'app/js/common.js',
+        common         : 'app/js/common.js',
         others         : 'app/js/others',
         libs           : 'app/libs',
         icons          : 'app/img/icons',
