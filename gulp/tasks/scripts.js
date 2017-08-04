@@ -12,7 +12,8 @@ gulp.task("scripts", function () {
 			hardFail: true,
 			includePaths: [
 				config.src.nodeModules,
-				config.src.js
+				config.src.js,
+				config.src.components
 			]
 		}))
 		.on('error', config.errorHandler)
