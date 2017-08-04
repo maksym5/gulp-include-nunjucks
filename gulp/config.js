@@ -13,6 +13,7 @@ var config = {
         fonts          : 'app/fonts',
         js             : 'app/js',
         common         : 'app/js/common.js',
+        components     : 'app/js/components',
         others         : 'app/js/others',
         libs           : 'app/libs',
         icons          : 'app/img/icons',
