@@ -10,7 +10,6 @@ var sourcemaps   = require('gulp-sourcemaps');
 var rename       = require('gulp-rename');
 var wait         = require('gulp-wait');
 var postcss      = require('gulp-postcss');
-var csco         = require('postcss-csso');
 var browserSync  = require('browser-sync');
 
 
@@ -22,8 +21,7 @@ var processors = [
     // require('lost'),
     mqpacker({
         sort: sortMediaQueries
-    }),
-    csco
+    })
 ];
 
 
