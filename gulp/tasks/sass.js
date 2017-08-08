@@ -27,7 +27,7 @@ var processors = [
 gulp.task('sass', function() {
 	return gulp.src(config.src.sass + "/**/*.{sass,scss}")
 	.pipe(sourcemaps.init())
-	.pipe(sass({outputStyle: 'expand'}))
+	.pipe(sass({outputStyle: 'expanded'}))
 	.pipe(wait(70)) //optional
 	.on('error', config.errorHandler)
 	.pipe(rename({suffix: '.min', prefix : ''}))
