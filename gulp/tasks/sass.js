@@ -9,7 +9,6 @@ var cleanCSS     = require('gulp-clean-css');
 var sourcemaps   = require('gulp-sourcemaps');
 var rename       = require('gulp-rename');
 var wait         = require('gulp-wait');
-var postcss      = require('gulp-postcss');
 var browserSync  = require('browser-sync');
 
 
@@ -42,7 +41,7 @@ gulp.task('sass', function() {
 gulp.task('cssshort', function () {
 	return gulp.src(config.src.css + "/app.min.css")
 	.pipe(shorthand())
-	.pipe(cleanCSS()) // minify
+	.pipe(cleanCSS())
 	.pipe(gulp.dest(config.dest.css));
 });
 
