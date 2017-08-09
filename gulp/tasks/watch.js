@@ -10,7 +10,7 @@ gulp.task('watch', ['sass', 'scripts', 'browser-sync', 'nunjucks'], function() {
 	gulp.watch(config.src.spriteSvg + "/**/*.svg", ['svgSprite']);
 	gulp.watch(config.src.svgInline + "/fill_removed/*.svg", ['svgRemoveAttr']);
 	gulp.watch(config.src.svgInline + "/default/*.svg", ['svgDefault']);
-	gulp.watch(config.src.common, ['scripts']);
+	gulp.watch([config.src.js + "common.js", config.src.components + "/*.js"], ['scripts']);
 	gulp.watch(config.src.templates + "/**/*.html", ['nunjucks']);
 	gulp.watch(config.src.root + "/*.html", browserSync.reload);
 });
