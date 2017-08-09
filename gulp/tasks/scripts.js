@@ -3,7 +3,7 @@ var config = require('../config');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var include = require("gulp-include");
-
+var browserSync  = require('browser-sync');
 
 gulp.task("scripts", function () {
 	gulp.src(config.src.common)
@@ -19,5 +19,6 @@ gulp.task("scripts", function () {
 		.on('error', config.errorHandler)
 		.pipe(uglify())
 		.pipe(rename(config.src.outputFile))
-		.pipe(gulp.dest(config.src.js));
+		.pipe(gulp.dest(config.src.js))
+		.pipe(browserSync.reload({stream: true}));
 });
