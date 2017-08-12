@@ -8,7 +8,6 @@ var notify       = require("gulp-notify");
 var cleanCSS     = require('gulp-clean-css');
 var sourcemaps   = require('gulp-sourcemaps');
 var rename       = require('gulp-rename');
-var wait         = require('gulp-wait');
 var postcss      = require('gulp-postcss');
 var browserSync  = require('browser-sync');
 
@@ -29,7 +28,6 @@ gulp.task('sass', function() {
 	return gulp.src(config.src.sass + "/**/*.{sass,scss}")
 	.pipe(sourcemaps.init())
 	.pipe(sass({outputStyle: 'expanded'}))
-	.pipe(wait(70)) //optional
 	.on('error', config.errorHandler)
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(postcss(processors))
