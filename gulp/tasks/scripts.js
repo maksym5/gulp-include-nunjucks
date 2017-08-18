@@ -4,11 +4,13 @@ var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var include = require("gulp-include");
 var print = require('gulp-print');
+var color = require('gulp-color');
 
 gulp.task("scripts", function () {
 	gulp.src(config.src.common)
 		.pipe(print(function(filename) {
-			return "CHANGE: " + filename;
+			var colors3 = color("Updated: " + filename.slice(12), "GREEN");
+			return colors3;
 		}))
 		.pipe(include({
 			extensions: "js",
