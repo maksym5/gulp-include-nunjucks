@@ -3,9 +3,13 @@ var config = require('../config');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var include = require("gulp-include");
+var print = require('gulp-print');
 
 gulp.task("scripts", function () {
 	gulp.src(config.src.common)
+		.pipe(print(function(filename) {
+			return "CHANGE: " + filename;
+		}))
 		.pipe(include({
 			extensions: "js",
 			hardFail: true,
