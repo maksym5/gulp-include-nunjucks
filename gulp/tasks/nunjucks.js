@@ -8,7 +8,8 @@ var gulpif            = require('gulp-if');
 var changed           = require('gulp-changed');
 var prettify          = require('gulp-prettify');
 var frontMatter       = require('gulp-front-matter');
-
+var print = require('gulp-print');
+var color = require('gulp-color');
 
 function renderHtml(onlyChanged) {
     nunjucksRender.nunjucks.configure({
@@ -19,6 +20,10 @@ function renderHtml(onlyChanged) {
 
     return gulp
         .src([config.src.templates + '/**/[^_]*.html'])
+        .pipe(print(function(filename) {
+			var colors4 = color("Changed: " + filename.slice(19), "GREEN");
+			return colors4;
+		}))
         .pipe(plumber({
             errorHandler: config.errorHandler
         }))
