@@ -7,6 +7,7 @@ var svgmin = require('gulp-svgmin');
 var cheerio = require('gulp-cheerio');
 var replace = require('gulp-replace');
 var runSequence = require('run-sequence');
+var newer = require('gulp-newer');
 
 gulp.task('cleansvgsprite', function () {
 	return del.sync(config.src.img + "/sprite.svg");
@@ -17,6 +18,7 @@ gulp.task('remfill', function () {
 		.pipe(plumber({
 			errorHandler: config.errorHandler
 		}))
+		.pipe(newer(config.src.spriteSvg))
 		.pipe(cheerio({
 			run: function ($, file) {
 				$('[fill]').removeAttr('fill');
@@ -30,11 +32,13 @@ gulp.task('remfill', function () {
 		.pipe(gulp.dest(config.src.spriteSvg + "/fill_removed/"));
 });
 
+
 gulp.task('svgSpriteBuild', function () {
 	return gulp.src([config.src.spriteSvg + "/fill_removed/*.svg", config.src.spriteSvg + "/default/*.svg"])
 		.pipe(plumber({
 			errorHandler: config.errorHandler
 		}))
+		.pipe(newer(config.src.spriteSvg))
 		.pipe(svgmin({
 			js2svg: {
 				pretty: true
@@ -56,6 +60,7 @@ gulp.task('svgSpriteBuild', function () {
 		}))
 		.pipe(gulp.dest(config.src.img));
 });
+
 
 gulp.task('svgSprite', function () {
 	runSequence(
