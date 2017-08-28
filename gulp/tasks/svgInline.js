@@ -10,21 +10,22 @@ var color = require('gulp-color');
 gulp.task('svgRemoveAttr', function () {
 	return gulp.src(config.src.svgInline + "/fill_removed/*.svg")
 		.pipe(newer(config.src.svgInline))
-		.pipe(print(function(filename) {
-			var colors1 = color("NEW: " + filename.slice(36), "GREEN");
-			return colors1;
-		}))
 		.pipe(cheerio({
 			run: function ($, file) {
 				$('[fill]').removeAttr('fill');
 				$('[stroke]').removeAttr('stroke');
 				$('[style]').removeAttr('style');
 				filename = file.relative.slice(0, -4);
+				svgPrintName = file.relative;
 				$('svg').attr('class', 'icon ' + 'icon-' + filename);
 			},
 			parserOptions: {
 				xmlMode: true
 			}
+		}))
+		.pipe(print(function() {
+			var colors1 = color("New clear icon: " + svgPrintName, "GREEN");
+			return colors1;
 		}))
 		.pipe(svgmin({
 			js2svg: {
@@ -38,18 +39,19 @@ gulp.task('svgRemoveAttr', function () {
 gulp.task('svgDefault', function () {
 	return gulp.src(config.src.svgInline + "/default/*.svg")
 	.pipe(newer(config.src.svgInline))
-	.pipe(print(function(filename) {
-		var colors2 = color("NEW: " + filename.slice(31), "GREEN");
-		return colors2;
-	}))
 	.pipe(cheerio({
 			run: function ($, file) {
 				filename = file.relative.slice(0, -4);
+				svgPrintName = file.relative;
 				$('svg').attr('class', 'icon ' + 'icon-' + filename);
 			},
 			parserOptions: {
 				xmlMode: true
-			}
+			},
+		}))
+		.pipe(print(function() {
+			var colors2 = color("New default icon: " + svgPrintName, "GREEN");
+			return colors2;
 		}))
 		.pipe(svgmin({
 			js2svg: {
